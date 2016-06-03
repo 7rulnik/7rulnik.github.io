@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Valentin 7rulnik Semirulnik</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #361759;
+            display: flex;
+            justify-content: space-around;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            height: 100vh;
+            transform: rotate(-45deg)
+        }
+
+        .column {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            animation-duration: 1.2s;
+            animation-iteration-count: infinite;
+            animation-timing-function: ease;
+        }
+
+        .column:nth-child(odd) {
+            animation-name: translateUp;
+        }
+
+        .column:nth-child(even) {
+            animation-name: translateDown;
+        }
+
+        .circle {
+            min-width: 50px;
+            min-height: 50px;
+            margin: 25px;
+            display: block;
+            background-image: url(https://pp.vk.me/c626421/v626421414/eb32/7_CpT1ULMzM.jpg);
+            background-size: 100%;
+            border-radius: 50%;
+            transform: rotate(45deg);
+        }
+
+        @keyframes translateUp {
+            0% {
+                transform: translate(0, 0);
+            }
+            100% {
+                transform: translate(0, -100px);
+            }
+        }
+
+        @keyframes translateDown {
+            0% {
+                transform: translate(0, 0);
+            }
+            100% {
+                transform: translate(0, 100px);
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        'use strict';
+
+        function generateMarkup() {
+            var _window = window;
+            var innerWidth = _window.innerWidth;
+            var innerHeight = _window.innerHeight;
+            var countInRow = Math.floor(innerWidth / 70) * 5;
+            var countInColumn = Math.floor(innerHeight / 70) * 5;
+            var columnTemplate = '';
+            for (var i = 0; i < countInColumn; i++) {
+              columnTemplate += '<div class="circle"></div>';
+            }
+            var template = '';
+            for (var i = 0; i < countInRow; i++) {
+              template += '<div class="column">' + columnTemplate + '</div>';
+            }
+            document.body.innerHTML = template;
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            generateMarkup();
+        });
+        window.addEventListener('resize', generateMarkup);
+    </script>
+</body>
+
+</html>
